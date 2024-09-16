@@ -15,11 +15,14 @@ const attendanceSchema = new Schema({
         locationId: { type: Schema.Types.ObjectId, ref: 'Location' }, // reference to the check-out location
         coordinates: {
           type: { type: String, enum: ['Point'] },
-          coordinates: { type: [Number] }, // [longitude, latitude]
+          coordinates: { type: [Number] },
         },
       },
       workingHours: { type: Number, default: 0 }, // working hours for this session
     }],
+  },
+  {
+     timeStamp:true,
   });
   
   attendanceSchema.index({ 'records.checkIn.coordinates': '2dsphere' });

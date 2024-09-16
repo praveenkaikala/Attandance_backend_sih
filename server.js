@@ -11,6 +11,7 @@ app.use(fileUpload());
 app.listen(5000,()=>{
     console.log("server running")
 })
-app.use('/v1/api/employees', employeeRoutes);
+app.use(express.static('public'))
+app.use('/api/employee', employeeRoutes);
 app.use('/api/locations', locationRoutes);
 connectDB();
