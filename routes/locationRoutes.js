@@ -6,6 +6,7 @@ const {
   getLocationById,
   updateLocation,
   deleteLocation,
+  getOfficeLocations
 } = require('../controllers/locationController');
 
 const router = express.Router();
@@ -15,6 +16,7 @@ router.post('/create', createLocation);
 
 // Route for getting all locations
 router.get('/offsite', getOffSiteLocations);
+router.get('/office', getOfficeLocations);
 
 // Route for getting a location by ID
 router.get('/:id', getLocationById);

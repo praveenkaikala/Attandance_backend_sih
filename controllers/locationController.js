@@ -38,6 +38,16 @@ const createLocation = async (req, res) => {
   }
 };
 
+const getOfficeLocations = async (req, res) => {
+  try {
+    const locations = await Location.find({type:"office"});
+    res.status(200).json(locations);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 
 const getOffSiteLocations = async (req, res) => {
   try {
@@ -114,4 +124,5 @@ module.exports = {
   getLocationById,
   updateLocation,
   deleteLocation,
+  getOfficeLocations
 };
