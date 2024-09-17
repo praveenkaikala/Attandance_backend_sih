@@ -35,7 +35,7 @@ try {
 const loginUserController=async(req,res)=>{
     try {
         const {email,password}=req.body
-        const user=await Employee.findOne({email})
+        const user=await Employee.findOne({email}).populate('officeLocationId');
         if(!user)
         {
            return res.status(404).send({message:"user not found"})
