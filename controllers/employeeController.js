@@ -40,12 +40,12 @@ const createEmployee = async (req, res) => {
     //   });
     //   photoUrl = result.secure_url; 
     // }
-
+const password= generatePassword(8)
     const employee = new Employee({
       name,
       photo: photoUrl, 
       email,
-      role:"admin",
+      role:"employee",
       officeLocationId,
       phone,
       managerId: req.manager ? req.manager._id : null,
@@ -84,11 +84,11 @@ const createManager = async (req, res) => {
       name,
       photo: photoUrl, 
       email,
-      role:"admin",
+      role:"manager",
       officeLocationId,
       phone,
       managerId: null,
-      password:"admin123"
+      password
     });
 
     await employee.save();

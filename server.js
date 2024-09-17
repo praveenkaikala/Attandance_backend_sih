@@ -6,6 +6,7 @@ const fileUpload = require('express-fileupload');
 const employeeRoutes = require('./routes/employeeRoutes');
 const locationRoutes = require('./routes/locationRoutes');
 const loginRoutes=require('./routes/loginRoutes')
+const attendanceRoutes=require('./routes/attendanceRoutes')
 app.use(cors())
 app.use(express.json());
 app.use(fileUpload());
@@ -16,4 +17,5 @@ app.use(express.static('public'))
 app.use('/api/user', employeeRoutes);
 app.use('/api/locations', locationRoutes);
 app.use('/api/login',loginRoutes)
+app.use('/api/attendance',attendanceRoutes)
 connectDB();
