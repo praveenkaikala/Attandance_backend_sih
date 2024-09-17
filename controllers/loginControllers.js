@@ -45,6 +45,10 @@ const loginUserController=async(req,res)=>{
             }
             return res.status(403).send({message:"not allowed"})
         }
+        else
+        {
+            return res.status(401).send({message:"invalid credentials"})
+        }
     
     } catch (error) {
         res.status(500).send({message:"internAL server error"})
