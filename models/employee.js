@@ -9,7 +9,8 @@ const employeeSchema = new Schema({
   role: { type: String, enum: ['admin', 'manager', 'employee'], default: 'employee' },
   officeLocationId: { type: Schema.Types.ObjectId, ref: 'Location', required: false }, 
   isActive: { type: Boolean, default: true },
-  managerId: { type: Schema.Types.ObjectId, ref: 'Employee', required: false }, 
+  managerId: { type: Schema.Types.ObjectId, ref: 'Employee', required: false },
+  password:{type:String,required:true} 
 },
 {
     timeStamp:true,
