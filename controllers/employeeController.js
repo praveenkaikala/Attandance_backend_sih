@@ -1,11 +1,32 @@
 // controllers/employeeController.js
 const cloudinary = require('../config/cloudinaryConfig');
 const Employee = require('../models/employee')
+function generatePassword(length) {
+  const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+  const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const numbers = "0123456789";
+  const specialChars = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+
+  const allChars = lowerCase + upperCase + numbers + specialChars;
+
+  let password = "";
+  const uniqueSet = new Set(); // Ensure uniqueness in each password generation
+
+  while (password.length < length) {
+    const randomChar = allChars[Math.floor(Math.random() * allChars.length)];
+    if (!uniqueSet.has(randomChar)) { // Check if character is unique
+      password += randomChar;
+      uniqueSet.add(randomChar);
+    }
+  }
+
+  return password;
+}
 
 // Controller for creating a new employee
 const createEmployee = async (req, res) => {
   try {
-    const { name, email, officeLocationId,phone,password } = req.body;
+    const { name, email, officeLocationId,phone } = req.body;
     const existingEmployee = await Employee.findOne({ email });
     if (existingEmployee) {
       return res.status(400).json({ message: 'Employee with this email already exists.' });
@@ -24,11 +45,11 @@ const createEmployee = async (req, res) => {
       name,
       photo: photoUrl, 
       email,
-      role:"employee",
+      role:"admin",
       officeLocationId,
       phone,
       managerId: req.manager ? req.manager._id : null,
-    password
+    password:"admin123"
     });
 
     await employee.save();
@@ -63,11 +84,11 @@ const createManager = async (req, res) => {
       name,
       photo: photoUrl, 
       email,
-      role:"manager",
+      role:"admin",
       officeLocationId,
       phone,
       managerId: null,
-      password
+      password:"admin123"
     });
 
     await employee.save();

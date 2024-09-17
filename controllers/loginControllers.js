@@ -38,7 +38,7 @@ const loginUserController=async(req,res)=>{
         }
         if(user.password===password)
         {
-            if(user.role==="employee")
+            if(user.role==="employee" || user.role==="admin" )
             {
     
                 return res.status(200).send({message:"success",user})
