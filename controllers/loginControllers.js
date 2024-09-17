@@ -13,7 +13,7 @@ try {
     }
     if(user.password===password)
     {
-        if(user.role==="manager")
+        if(user.role==="manager"|| user.role==="admin" )
         {
 
             return res.status(200).send({message:"success",user,token:generateToken(user.email)})
@@ -44,7 +44,7 @@ const loginUserController=async(req,res)=>{
         {
             return res.status(401).send({message:"invalid credentials"})
         }
-        if(user.role==="employee" || user.role==="admin" )
+        if(user.role==="employee" )
             {
     
                 return res.status(200).send({message:"success",user})
