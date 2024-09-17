@@ -5,7 +5,7 @@ const Employee = require('../models/employee')
 // Controller for creating a new employee
 const createEmployee = async (req, res) => {
   try {
-    const { name, email, role, officeLocationId,phone,password } = req.body;
+    const { name, email, officeLocationId,phone,password } = req.body;
     const existingEmployee = await Employee.findOne({ email });
     if (existingEmployee) {
       return res.status(400).json({ message: 'Employee with this email already exists.' });
@@ -24,7 +24,7 @@ const createEmployee = async (req, res) => {
       name,
       photo: photoUrl, 
       email,
-      role,
+      role:"employee",
       officeLocationId,
       phone,
       managerId: req.manager ? req.manager._id : null,

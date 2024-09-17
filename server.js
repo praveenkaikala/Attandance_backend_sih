@@ -13,7 +13,7 @@ app.listen(5000,()=>{
     console.log("server running")
 })
 app.use(express.static('public'))
-app.use('/api/employee', employeeRoutes);
+app.use('/api/user', employeeRoutes);
 app.use('/api/locations', locationRoutes);
 app.use('/api/login',loginRoutes)
 connectDB();
