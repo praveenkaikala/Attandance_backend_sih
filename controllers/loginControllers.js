@@ -20,6 +20,10 @@ try {
         }
         return res.status(403).send({message:"not allowed"})
     }
+    else
+    {
+        return res.status(401).send({message:"invalid credentials"})
+    }
 
 } catch (error) {
     res.status(500).send({message:"internAL server error"})
@@ -36,19 +40,16 @@ const loginUserController=async(req,res)=>{
         {
            return res.status(404).send({message:"user not found"})
         }
-        if(user.password===password)
+        if(user.password!=password)
         {
-            if(user.role==="employee" || user.role==="admin" )
+            return res.status(401).send({message:"invalid credentials"})
+        }
+        if(user.role==="employee" || user.role==="admin" )
             {
     
                 return res.status(200).send({message:"success",user})
             }
             return res.status(403).send({message:"not allowed"})
-        }
-        else
-        {
-            return res.status(401).send({message:"invalid credentials"})
-        }
     
     } catch (error) {
         res.status(500).send({message:"internAL server error"})
