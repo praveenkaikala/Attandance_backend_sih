@@ -85,7 +85,9 @@ const checkOut = async (req, res) => {
             return res.status(404).json({ message: 'Location not found' });
         }
 
-        const attendance = await Attendance.findOne({ userId });
+        const attendance = await Attendance.findOne({ userId })
+  .sort({ 'records.checkIn.time': -1 }) // Sort by check-in time in descending order
+  .limit(1); // Get only the latest record
         if (!attendance) {
             return res.status(404).json({ message: 'Attendance record not found' });
         }

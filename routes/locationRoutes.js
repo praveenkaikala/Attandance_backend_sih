@@ -2,7 +2,7 @@
 const express = require('express');
 const {
   createLocation,
-  getAllLocations,
+  getOffSiteLocations,
   getLocationById,
   updateLocation,
   deleteLocation,
@@ -14,7 +14,7 @@ const router = express.Router();
 router.post('/create', createLocation);
 
 // Route for getting all locations
-router.get('/', getAllLocations);
+router.get('/offsite', getOffSiteLocations);
 
 // Route for getting a location by ID
 router.get('/:id', getLocationById);
